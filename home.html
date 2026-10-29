@@ -8,10 +8,11 @@
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="style/home.css" />
+  <link rel="stylesheet" href="style/reusable.css" />
 </head>
 
-<body class="home">
+<body class="page cointainer">
   <header>
     <div class="home_wrapper container">
       <div class="home_wrapper_logo">
@@ -44,16 +45,36 @@
     <nav class="scenario_list" aria-label="Scenarios">
       <a class="scenario_card scenario_flooding" href="scenario-1.html">
         <div class="scenario_card_image">
-          <img src="assets/scenario-flooding.svg" alt="" width="400" height="240" />
+          <img
+            src="assets/scenario-flooding.svg"
+            alt=""
+            width="400"
+            height="240"
+          />
         </div>
         <div class="scenario_card_body">
           <p class="scenario_card_label">SCENARIO 01</p>
           <h2 class="scenario_card_title">Flooding</h2>
-          <p class="scenario_card_text">Rivers rise, streets and cellars fill with water.</p>
+          <p class="scenario_card_text">
+            Rivers rise, streets and cellars fill with water.
+          </p>
           <div class="scenario_card_footer">
             <span class="scenario_card_count">
               3 questions
-              <svg class="scenario_card_arrow" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <svg
+                class="scenario_card_arrow"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </span>
             <span class="scenario_card_start">
               <span class="glow_point" aria-hidden="true"></span>
@@ -64,16 +85,36 @@
       </a>
       <a class="scenario_card scenario_heatwaves" href="scenario-2.html">
         <div class="scenario_card_image">
-          <img src="assets/scenario-heatwaves.svg" alt="" width="400" height="240" />
+          <img
+            src="assets/scenario-heatwaves.svg"
+            alt=""
+            width="400"
+            height="240"
+          />
         </div>
         <div class="scenario_card_body">
           <p class="scenario_card_label">SCENARIO 02</p>
           <h2 class="scenario_card_title">Heatwaves</h2>
-          <p class="scenario_card_text">Many hot days and warm nights in a row.</p>
+          <p class="scenario_card_text">
+            Many hot days and warm nights in a row.
+          </p>
           <div class="scenario_card_footer">
             <span class="scenario_card_count">
               3 questions
-              <svg class="scenario_card_arrow" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <svg
+                class="scenario_card_arrow"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </span>
             <span class="scenario_card_start">
               <span class="glow_point" aria-hidden="true"></span>
@@ -84,16 +125,36 @@
       </a>
       <a class="scenario_card scenario_thunderstorms" href="scenario-3.html">
         <div class="scenario_card_image">
-          <img src="assets/scenario-thunderstorms.svg" alt="" width="400" height="240" />
+          <img
+            src="assets/scenario-thunderstorms.svg"
+            alt=""
+            width="400"
+            height="240"
+          />
         </div>
         <div class="scenario_card_body">
           <p class="scenario_card_label">SCENARIO 03</p>
           <h2 class="scenario_card_title">Severe thunderstorms</h2>
-          <p class="scenario_card_text">Lightning, hail and strong gusts can arrive within minutes.</p>
+          <p class="scenario_card_text">
+            Lightning, hail and strong gusts can arrive within minutes.
+          </p>
           <div class="scenario_card_footer">
             <span class="scenario_card_count">
               3 questions
-              <svg class="scenario_card_arrow" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <svg
+                class="scenario_card_arrow"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </span>
             <span class="scenario_card_start">
               <span class="glow_point" aria-hidden="true"></span>
@@ -107,7 +168,18 @@
 
   <footer class="home_footer">
     <div class="home_footer_wrapper container">
-      <span>This quiz is for learning, not an official warning service. Current warnings: <a class="home_footer_link" href="https://www.natural-hazards.ch/#hazards-tab=all" target="_blank" rel="noopener noreferrer">natural-hazards.ch</a> and the MeteoSwiss app. In an emergency, call 112.</span>
+      <span
+        >This quiz is for learning, not an official warning service. Current
+        warnings:
+        <a
+          class="home_footer_link"
+          href="https://www.natural-hazards.ch/#hazards-tab=all"
+          target="_blank"
+          rel="noopener noreferrer"
+          >natural-hazards.ch</a
+        >
+        and the MeteoSwiss app. In an emergency, call 112.</span
+      >
       <span>Student project · UZH Information Management · Group 17</span>
     </div>
   </footer>
