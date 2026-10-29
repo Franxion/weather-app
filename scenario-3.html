@@ -74,24 +74,24 @@
         <fieldset class="quiz_options">
           <legend class="visually_hidden">Choose one answer</legend>
           <label class="quiz_option">
-            <input class="quiz_option_input" type="radio" name="answer" value="a" />
+            <input class="quiz_option_input" type="radio" name="answer" required value="a" />
             <span class="quiz_option_letter" aria-hidden="true">A</span>
             <span>About 3 km</span>
           </label>
           <label class="quiz_option">
-            <input class="quiz_option_input" type="radio" name="answer" value="b" />
+            <input class="quiz_option_input" type="radio" name="answer" required value="b" />
             <span class="quiz_option_letter" aria-hidden="true">B</span>
             <span>About 9 km</span>
           </label>
           <label class="quiz_option">
-            <input class="quiz_option_input" type="radio" name="answer" value="c" />
+            <input class="quiz_option_input" type="radio" name="answer" required value="c" />
             <span class="quiz_option_letter" aria-hidden="true">C</span>
             <span>About 30 km</span>
           </label>
         </fieldset>
 
         <div class="quiz_actions">
-          <button class="quiz_submit" type="submit">
+          <button disabled class="quiz_submit" type="submit">
             <span class="glow_point" aria-hidden="true"></span>
             Check answer
           </button>
@@ -99,5 +99,6 @@
       </form>
     </div>
   </main>
+  <script src="js/quiz.js"></script>
 </body>
 </html>
