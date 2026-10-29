@@ -10,6 +10,9 @@
   --color-storm-slate: #574c9c;
   --color-right: #22703e;
   --color-wrong: #b0351c;
+  --color-white: #ffffff;
+  --color-glass: rgba(255, 255, 255, 0.74);
+  --color-glass-edge: rgba(255, 255, 255, 0.95);
 
   --font-heading: "Space Grotesk", Inter, sans-serif;
   --font-body: Inter, system-ui, sans-serif;
@@ -37,6 +40,9 @@
 }
 
 .home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
   background-color: var(--color-mist-ground);
   color: var(--color-forest-ink);
@@ -106,5 +112,279 @@
 
   .banner_region_long {
     display: inline;
+  }
+}
+
+.glow_point {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: var(--color-aurora-glow);
+  box-shadow: 0 0 8px 2px var(--color-aurora-glow);
+}
+
+.home_main {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-top: 30px;
+}
+
+.home_intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home_intro_eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-aurora-text);
+}
+
+.home_intro_title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 38px;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.home_intro_text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-moss-muted);
+}
+
+.scenario_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scenario_flooding {
+  --scenario-color: var(--color-water);
+}
+
+.scenario_heatwaves {
+  --scenario-color: var(--color-clay);
+}
+
+.scenario_thunderstorms {
+  --scenario-color: var(--color-storm-slate);
+}
+
+.scenario_card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  min-height: 132px;
+  padding: 8px;
+  border: 1px solid var(--color-glass-edge);
+  border-radius: 24px;
+  background-color: var(--color-glass);
+  box-shadow: 0 10px 30px rgba(16, 36, 28, 0.08);
+  color: var(--color-forest-ink);
+  text-decoration: none;
+}
+
+.scenario_card_image {
+  flex-shrink: 0;
+  align-self: center;
+  width: 118px;
+  height: 116px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.scenario_card_image > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scenario_card_body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding-right: 8px;
+}
+
+.scenario_card_label {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--scenario-color);
+}
+
+.scenario_card_title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.scenario_card_text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-moss-muted);
+}
+
+.scenario_card_count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scenario-color);
+}
+
+.scenario_card_start {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .glow_point {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 10px 2px var(--color-aurora-glow);
+  }
+
+  .home_main {
+    gap: 44px;
+    padding-block: 48px;
+  }
+
+  .home_intro {
+    gap: 16px;
+    max-width: 760px;
+  }
+
+  .home_intro_eyebrow {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .home_intro_title {
+    font-size: 64px;
+    line-height: 1;
+  }
+
+  .home_intro_text {
+    font-size: 19px;
+    line-height: 1.55;
+  }
+
+  .scenario_list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .scenario_card {
+    flex: 1 1 300px;
+    flex-direction: column;
+    gap: 0;
+    min-height: 0;
+    padding: 10px;
+    border-radius: 28px;
+    box-shadow: 0 14px 40px rgba(16, 36, 28, 0.1);
+  }
+
+  .scenario_card_image {
+    align-self: stretch;
+    width: auto;
+    height: 190px;
+    border-radius: 20px;
+  }
+
+  .scenario_card_body {
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 20px 16px 16px;
+  }
+
+  .scenario_card_title {
+    font-size: 28px;
+  }
+
+  .scenario_card_text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .scenario_card_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .scenario_card_count {
+    font-size: 14px;
+  }
+
+  .scenario_card_arrow {
+    display: none;
+  }
+
+  .scenario_card_start {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background-color: var(--color-forest-ink);
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.home_footer {
+  margin-top: auto;
+}
+
+.home_footer_wrapper {
+  padding-top: 16px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-moss-muted);
+}
+
+.home_footer_link {
+  color: inherit;
+}
+
+@media (min-width: 1024px) {
+  .home_footer {
+    border-top: 1px solid var(--color-mist-line);
+  }
+
+  .home_footer_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 20px;
+    font-size: 14px;
   }
 }
