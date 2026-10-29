@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flooding · Weather Safety Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style/reusable.css" />
+  <link rel="stylesheet" href="style/scenario.css" />
+</head>
+
+<body class="page scenario_flooding">
+  <header class="scenario_header">
+    <img
+      class="scenario_header_scene"
+      src="assets/scenario-flooding.svg"
+      alt=""
+      width="400"
+      height="240"
+    />
+    <div class="scenario_header_bar">
+      <a class="scenario_back" href="home.html">
+        <svg
+          aria-hidden="true"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M15 6l-6 6 6 6" />
+        </svg>
+        Scenarios
+      </a>
+      <p class="scenario_tag">
+        01 · FLOODING<span class="score_long"> · SCORE 0</span>
+      </p>
+    </div>
+  </header>
+
+  <main class="quiz">
+    <div class="quiz_card">
+      <div class="quiz_status">
+        <p class="quiz_count">QUESTION 01 / 03</p>
+        <p class="quiz_score score_short">SCORE 0</p>
+        <div
+          class="quiz_progress"
+          role="progressbar"
+          aria-label="Question 1 of 3"
+          aria-valuemin="0"
+          aria-valuemax="3"
+          aria-valuenow="1"
+        >
+          <span class="quiz_progress_step quiz_progress_step_done"></span>
+          <span class="quiz_progress_step"></span>
+          <span class="quiz_progress_step"></span>
+        </div>
+      </div>
+
+      <form class="quiz_form">
+        <h1 class="quiz_question">
+          Heavy rain has flooded your street. Your bike is in the underground
+          car park of your building. What do you do?
+        </h1>
+
+        <fieldset class="quiz_options">
+          <legend class="visually_hidden">Choose one answer</legend>
+          <label class="quiz_option">
+            <input class="quiz_option_input" type="radio" name="answer" value="a" />
+            <span class="quiz_option_letter" aria-hidden="true">A</span>
+            <span>Run down quickly and move the bike to a higher place.</span>
+          </label>
+          <label class="quiz_option">
+            <input class="quiz_option_input" type="radio" name="answer" value="b" />
+            <span class="quiz_option_letter" aria-hidden="true">B</span>
+            <span>Stay out of the car park and leave the bike where it is.</span>
+          </label>
+          <label class="quiz_option">
+            <input class="quiz_option_input" type="radio" name="answer" value="c" />
+            <span class="quiz_option_letter" aria-hidden="true">C</span>
+            <span>Wait in the car park until the rain stops.</span>
+          </label>
+        </fieldset>
+
+        <div class="quiz_actions">
+          <button class="quiz_submit" type="submit">
+            <span class="glow_point" aria-hidden="true"></span>
+            Check answer
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

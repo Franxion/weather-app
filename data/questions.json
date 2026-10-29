@@ -1,0 +1,327 @@
+{
+  "scenarios": [
+    {
+      "id": "flooding",
+      "title": "Flooding",
+      "intro": "Rivers rise, streets and cellars fill with water.",
+      "icon": "flood",
+      "color": "water",
+      "questions": [
+        {
+          "id": "flooding-1",
+          "text": "Heavy rain has flooded your street. Your bike is in the underground car park of your building. What do you do?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Run down quickly and move the bike to a higher place."
+            },
+            {
+              "id": "b",
+              "text": "Stay out of the car park and leave the bike where it is."
+            },
+            {
+              "id": "c",
+              "text": "Wait in the car park until the rain stops."
+            }
+          ],
+          "correctOptionId": "b",
+          "explanation": "When there is a risk of flooding, do not go into basements or underground car parks. Do not put yourself in danger to save things. Leave the endangered area right away.",
+          "summary": "Stay out of basements and underground car parks when it floods, even to save your things.",
+          "source": {
+            "label": "Natural Hazards Portal: Flood advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/flood/advice.html"
+          }
+        },
+        {
+          "id": "flooding-2",
+          "text": "The river near your student flat is very high and fast. You want to walk to the station. Which route do you take?",
+          "options": [
+            {
+              "id": "a",
+              "text": "The riverside path, because it is the shortest way."
+            },
+            {
+              "id": "b",
+              "text": "A route away from the river, even if it takes longer."
+            },
+            {
+              "id": "c",
+              "text": "Over the footbridge, so you can see how high the water is."
+            }
+          ],
+          "correctOptionId": "b",
+          "explanation": "Keep away from rivers and lakes that carry flood water. Surging water can catch you by surprise, and it can wash away the banks and make them collapse.",
+          "summary": "Keep away from rivers and lakes that carry flood water: the banks can collapse.",
+          "source": {
+            "label": "Natural Hazards Portal: Flood advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/flood/advice.html"
+          }
+        },
+        {
+          "id": "flooding-3",
+          "text": "The flood is over and the water has left your flat. When can you switch the power back on?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Right away, so you can dry the room with a heater."
+            },
+            {
+              "id": "b",
+              "text": "As soon as the floor looks dry."
+            },
+            {
+              "id": "c",
+              "text": "Only after an expert has checked the wiring and appliances."
+            }
+          ],
+          "correctOptionId": "c",
+          "explanation": "Do not switch electricity or gas back on until an expert has checked the lines and appliances. Flush the drinking-water pipes well and, if in doubt, boil the water before you use it.",
+          "summary": "After a flood, switch power and gas back on only after an expert has checked them.",
+          "source": {
+            "label": "Natural Hazards Portal: Flood advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/flood/advice.html"
+          }
+        }
+      ]
+    },
+    {
+      "id": "heatwave",
+      "title": "Heatwaves",
+      "intro": "Many hot days and warm nights in a row.",
+      "icon": "heat",
+      "color": "clay",
+      "questions": [
+        {
+          "id": "heatwave-1",
+          "text": "A heatwave warning is out for your region. You planned a run with friends at 2 p.m. What is the best plan?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Run at 2 p.m. as planned and bring a sports drink."
+            },
+            {
+              "id": "b",
+              "text": "Move the run to the early morning or the evening, or skip it."
+            },
+            {
+              "id": "c",
+              "text": "Run at 2 p.m., but take a shorter route."
+            }
+          ],
+          "correctOptionId": "b",
+          "explanation": "During a heatwave, keep outdoor activities to the morning and evening, and avoid hard physical activity. Stay in the shade and protect yourself from direct sun.",
+          "summary": "In a heatwave, do sport in the early morning or the evening, not in the heat of the day.",
+          "source": {
+            "label": "Natural Hazards Portal: Heatwave advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/heatwave/advice.html"
+          }
+        },
+        {
+          "id": "heatwave-2",
+          "text": "How much should you drink on a hot day during a heatwave?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Regularly through the day, at least 1.5 litres."
+            },
+            {
+              "id": "b",
+              "text": "Only when you feel thirsty."
+            },
+            {
+              "id": "c",
+              "text": "Mainly cold beer or iced soft drinks."
+            }
+          ],
+          "correctOptionId": "a",
+          "explanation": "Drink regularly and enough, at least 1.5 litres a day. Do not drink alcohol. Eat fresh, cool and light meals.",
+          "summary": "Drink regularly, at least 1.5 litres a day, and drink no alcohol.",
+          "source": {
+            "label": "Natural Hazards Portal: Heatwave advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/heatwave/advice.html"
+          }
+        },
+        {
+          "id": "heatwave-3",
+          "text": "Your room gets very hot during the day. When should you let fresh air in?",
+          "options": [
+            {
+              "id": "a",
+              "text": "At midday, when the sun is strongest."
+            },
+            {
+              "id": "b",
+              "text": "Never. Keep the windows shut day and night."
+            },
+            {
+              "id": "c",
+              "text": "At night and early in the morning, when it is cooler outside."
+            }
+          ],
+          "correctOptionId": "c",
+          "explanation": "Use the cooler night air. Let plenty of outside air through your home at night and early in the morning, before the hot part of the day.",
+          "summary": "Let fresh air in at night and early in the morning, when it is cooler outside.",
+          "source": {
+            "label": "Natural Hazards Portal: Heatwave advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/heatwave/advice.html"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thunderstorm",
+      "title": "Severe thunderstorms",
+      "intro": "Lightning, hail and strong gusts can arrive within minutes.",
+      "icon": "storm",
+      "color": "slate",
+      "questions": [
+        {
+          "id": "thunderstorm-1",
+          "text": "You see lightning and count 9 seconds until you hear the thunder. About how far away is the storm?",
+          "options": [
+            {
+              "id": "a",
+              "text": "About 3 km"
+            },
+            {
+              "id": "b",
+              "text": "About 9 km"
+            },
+            {
+              "id": "c",
+              "text": "About 30 km"
+            }
+          ],
+          "correctOptionId": "a",
+          "explanation": "Count the seconds between the lightning and the thunder and divide by three. That gives the distance in kilometres: 9 ÷ 3 = about 3 km. The storm is close, so seek shelter in a building or a car.",
+          "summary": "Seconds between lightning and thunder divided by three = distance in kilometres.",
+          "source": {
+            "label": "Natural Hazards Portal: Thunderstorm advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/thunderstorms/advice.html"
+          }
+        },
+        {
+          "id": "thunderstorm-2",
+          "text": "You are swimming in a lake with friends when a thunderstorm moves in. What do you do?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Stay in the water until the rain is over."
+            },
+            {
+              "id": "b",
+              "text": "Swim out to the raft and wait there."
+            },
+            {
+              "id": "c",
+              "text": "Get out of the water and go into a building or a car."
+            }
+          ],
+          "correctOptionId": "c",
+          "explanation": "Stay away from water during a thunderstorm. Get out and seek shelter in a building or a car.",
+          "summary": "When a thunderstorm comes, get out of the water and into a building or a car.",
+          "source": {
+            "label": "Natural Hazards Portal: Thunderstorm advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/thunderstorms/advice.html"
+          }
+        },
+        {
+          "id": "thunderstorm-3",
+          "text": "You are hiking in open terrain. There is no building or car nearby, and lightning is close. What do you do?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Lie flat on the ground."
+            },
+            {
+              "id": "b",
+              "text": "Crouch down low."
+            },
+            {
+              "id": "c",
+              "text": "Walk down into the dry riverbed to get lower."
+            }
+          ],
+          "correctOptionId": "b",
+          "explanation": "In open terrain, if lightning is nearby, take a crouched position with your feet together, and do not lie flat. Avoid riverbeds, steep slopes and flooded roads.",
+          "summary": "Caught in the open: crouch down with your feet together, and never lie flat.",
+          "source": {
+            "label": "Natural Hazards Portal: Thunderstorm advice",
+            "url": "https://www.natural-hazards.ch/danger-levels/thunderstorms/advice.html"
+          }
+        }
+      ]
+    }
+  ],
+  "emergencyNumbers": [
+    {
+      "number": "112",
+      "label": "General emergency"
+    },
+    {
+      "number": "117",
+      "label": "Police"
+    },
+    {
+      "number": "118",
+      "label": "Fire brigade"
+    },
+    {
+      "number": "144",
+      "label": "Ambulance"
+    }
+  ],
+  "ui": {
+    "appName": "Weather Safety Quiz",
+    "headerTag": "For students in Switzerland · EN",
+    "headerTagShort": "CH · EN",
+    "home": {
+      "eyebrow": "Climate readiness · 3 scenarios · 2 minutes each",
+      "title": "Would you know what to do?",
+      "intro": "More hot days and heavier rainfall are expected in Switzerland. Pick a scenario, answer three questions and learn from official Swiss guidance.",
+      "scenarioNumber": "Scenario {n}",
+      "questionCount": "{count} questions",
+      "start": "Start",
+      "disclaimer": "This quiz is for learning, not an official warning service.",
+      "warnings": "Current warnings: {link} and the MeteoSwiss app.",
+      "warningsLink": {
+        "label": "natural-hazards.ch",
+        "url": "https://www.natural-hazards.ch/"
+      },
+      "emergency": "In an emergency, call 112.",
+      "credits": "Student project · UZH Information Management · Group 17"
+    },
+    "quiz": {
+      "back": "Scenarios",
+      "progress": "Question {current} / {total}",
+      "score": "Score {score}",
+      "chooseOne": "Choose one answer",
+      "checkAnswer": "Check answer",
+      "chooseFirst": "Choose an answer first.",
+      "correct": "Correct!",
+      "notQuite": "Not quite",
+      "yourAnswer": "Your answer",
+      "correctAnswer": "Correct answer",
+      "officialSource": "Official source",
+      "opensInNewTab": "(opens in a new tab)",
+      "nextQuestion": "Next question",
+      "seeResults": "See your results"
+    },
+    "results": {
+      "scoreLabel": "Correct",
+      "headings": [
+        { "minPercent": 100, "text": "Excellent!" },
+        { "minPercent": 60, "text": "Well done!" },
+        { "minPercent": 0, "text": "Keep learning" }
+      ],
+      "message": "You answered {score} of {total} questions correctly.",
+      "rememberTitle": "What to remember",
+      "markCorrect": "Correct",
+      "markIncorrect": "Incorrect",
+      "emergencyTitle": "In an emergency",
+      "emergencyText": "Emergency numbers in Switzerland. Tap to call.",
+      "chooseAnother": "Choose another scenario",
+      "restart": "Restart this scenario"
+    }
+  }
+}
