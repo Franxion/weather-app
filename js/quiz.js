@@ -1,47 +1,224 @@
+import questions from "../data/questions.json" with { type: "json" };
+
 const form = document.querySelector(".quiz_form");
 const track = form.querySelector(".quiz_track");
 const submitButton = form.querySelector(".quiz_submit");
-const slides = [...track.children];
+const submitLabel = submitButton.querySelector(".quiz_submit_label");
+const scoreShort = document.querySelector(".score_short");
+const scoreLong = document.querySelector(".score_long");
 const count = document.querySelector(".quiz_count");
 const progress = document.querySelector(".quiz_progress");
 const progressSteps = [...progress.children];
+const slides = [...track.children];
 
-const pad = (n) => String(n).padStart(2, "0");
+let QUESTIONNAIRE = { scenarioId: 0, slide: 0, score: 0 };
 
-let current = 0;
+const scenarioQuestions =
+  questions.scenarios[QUESTIONNAIRE.scenarioId].questions;
 
-function updateSubmitButton() {
-  submitButton.disabled = slides[current].querySelector(":checked") === null;
+const ICON_CHECK =
+  '<svg aria-hidden="true" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const ICON_CROSS =
+  '<svg aria-hidden="true" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const ICON_EXTERNAL =
+  '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+
+function createElement(tag, className, text) {
+  const element = document.createElement(tag);
+  element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
 }
 
-function showSlide(index) {
-  const position = index + 1;
-  const total = slides.length;
-
-  current = index;
-  track.style.setProperty("--index", index);
-  slides.forEach((slide, i) => {
-    slide.inert = i !== index;
-  });
-  progressSteps.forEach((step, i) => {
-    step.classList.toggle("quiz_progress_step_done", i <= index);
-  });
-  count.textContent = `QUESTION ${pad(position)} / ${pad(total)}`;
-  progress.setAttribute("aria-label", `Question ${position} of ${total}`);
-  progress.setAttribute("aria-valuenow", position);
-  updateSubmitButton();
+function createMark(isCorrect, size) {
+  const mark = createElement("span", "quiz_result_mark");
+  mark.innerHTML = (isCorrect ? ICON_CHECK : ICON_CROSS).replaceAll(
+    "{size}",
+    size,
+  );
+  mark.append(
+    createElement(
+      "span",
+      "visually_hidden",
+      isCorrect ? "Correct answer" : "Wrong answer",
+    ),
+  );
+  return mark;
 }
 
-form.addEventListener("change", updateSubmitButton);
+function createFeedback(isCorrect, { explanation, source }) {
+  const feedback = createElement(
+    "section",
+    `quiz_feedback ${isCorrect ? "" : "quiz_feedback_wrong"}`,
+  );
 
+  const head = createElement("div", "quiz_feedback_head");
+  const icon = createElement("div", "quiz_feedback_icon");
+  icon.innerHTML = (isCorrect ? ICON_CHECK : ICON_CROSS).replaceAll(
+    "{size}",
+    isCorrect ? 22 : 18,
+  );
+  head.append(
+    icon,
+    createElement(
+      "h2",
+      "quiz_feedback_title",
+      isCorrect ? "Correct!" : "Not quite",
+    ),
+  );
+
+  const link = createElement("a", "quiz_source");
+  link.href = source.url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  const linkText = createElement("span", "quiz_source_text");
+  linkText.append(
+    createElement("span", "quiz_source_label", "OFFICIAL SOURCE"),
+    createElement("span", "quiz_source_name", source.label),
+  );
+  const linkHint = createElement(
+    "span",
+    "visually_hidden",
+    "(opens in a new tab)",
+  );
+  link.append(linkText, linkHint);
+  link.insertAdjacentHTML("beforeend", ICON_EXTERNAL);
+
+  feedback.append(
+    head,
+    createElement("p", "quiz_feedback_text", explanation),
+    link,
+  );
+  return feedback;
+}
+
+form.addEventListener("change", toggleButtonState);
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (current < slides.length - 1) {
-    showSlide(current + 1);
-    slides[current]
-      .querySelector(".quiz_question")
-      .focus({ preventScroll: true });
+
+  if (!isSlideAnswered()) {
+    revealAnswer();
+  } else if (!isLastQuestion()) {
+    showSlide();
   }
 });
 
-showSlide(0);
+function currentSlide() {
+  return slides[QUESTIONNAIRE.slide];
+}
+
+function isLastQuestion() {
+  return QUESTIONNAIRE.slide === slides.length - 1;
+}
+
+function showSlide() {
+  QUESTIONNAIRE = { ...QUESTIONNAIRE, slide: QUESTIONNAIRE.slide + 1 };
+  track.style.setProperty("--index", QUESTIONNAIRE.slide);
+
+  updateStyleProgessQuestions(QUESTIONNAIRE.slide);
+  accessibilitySlidingQuestions(QUESTIONNAIRE.slide);
+  updateScore(false);
+  updateButton();
+}
+
+function updateStyleProgessQuestions(index) {
+  progressSteps.forEach((step, i) => {
+    step.classList.toggle("quiz_progress_step_done", i <= index);
+  });
+  count.textContent = `QUESTION ${String(index + 1).padStart(2, "0")} / 03`;
+}
+
+function accessibilitySlidingQuestions(index) {
+  slides.forEach((slide, i) => {
+    slide.inert = i !== index;
+  });
+  progress.setAttribute("aria-label", `Question ${index + 1} of ${3}`);
+  progress.setAttribute("aria-valuenow", index + 1);
+}
+
+function isSlideAnswered() {
+  return currentSlide().dataset.answered === "true";
+}
+
+function revealAnswer() {
+  const slide = currentSlide();
+  const currentQuestion = scenarioQuestions[QUESTIONNAIRE.slide];
+  const correctOptionId = currentQuestion.correctOptionId;
+  const userAnswer = slide.querySelector(":checked").value;
+  const isCorrect = userAnswer === correctOptionId;
+
+  if (isCorrect) {
+    QUESTIONNAIRE = { ...QUESTIONNAIRE, score: QUESTIONNAIRE.score + 1 };
+    updateScore(true);
+  }
+
+  highlightOptions(slide, userAnswer, correctOptionId);
+  lockAnsweredSlide(slide);
+  updateButton();
+  showFeedbackPopup(isCorrect, currentQuestion);
+}
+
+function highlightOptions(slide, userAnswer, correctOptionId) {
+  slide.querySelectorAll(".quiz_option_input").forEach((input) => {
+    const isCorrectOption = input.value === correctOptionId;
+    const isWrongChoice = input.value === userAnswer && !isCorrectOption;
+    if (!isCorrectOption && !isWrongChoice) return;
+
+    const option = input.closest(".quiz_option");
+    option.classList.add(
+      isCorrectOption ? "quiz_option_right" : "quiz_option_wrong",
+    );
+    option.append(createMark(isCorrectOption, 16));
+  });
+}
+
+function showFeedbackPopup(isCorrect, question) {
+  const dialog = createElement("dialog", "quiz_dialog");
+  dialog.setAttribute("aria-label", isCorrect ? "Correct!" : "Not quite");
+
+  const feedback = createFeedback(isCorrect, question);
+  const closeButton = createElement("button", "quiz_submit", "Close");
+  closeButton.type = "button";
+  closeButton.addEventListener("click", () => dialog.close());
+  feedback.append(closeButton);
+
+  dialog.append(feedback);
+  dialog.addEventListener("close", () => dialog.remove());
+  document.body.append(dialog);
+  dialog.showModal();
+}
+
+function updateScore(isUp) {
+  scoreLong.textContent = ` · SCORE ${QUESTIONNAIRE.score}`;
+  scoreShort.textContent = `SCORE ${QUESTIONNAIRE.score}`;
+  scoreShort.classList.toggle("quiz_score_up", isUp);
+  if (isUp) {
+    const arrow = createElement("span", "quiz_score_arrow", "▲");
+    arrow.setAttribute("aria-hidden", "true");
+    scoreShort.append(" ", arrow);
+  }
+}
+
+function lockAnsweredSlide(slide) {
+  slide.dataset.answered = "true";
+  slide.querySelector(".quiz_options").disabled = true;
+}
+
+function updateButton() {
+  toggleButtonState();
+  changeButtonText();
+}
+
+function toggleButtonState() {
+  submitButton.disabled = currentSlide().querySelector(":checked") === null;
+}
+
+function changeButtonText() {
+  if (!isSlideAnswered()) {
+    submitLabel.textContent = "Check answer";
+    return;
+  }
+  submitLabel.textContent = isLastQuestion()
+    ? "See your results"
+    : "Next question";
+}
