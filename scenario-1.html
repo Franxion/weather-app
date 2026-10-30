@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style/scenario.css" />
   </head>
 
-  <body class="page scenario_flooding">
+  <body class="page scenario_flooding" data-scenario-id="flooding">
     <header class="scenario_header">
       <img
         class="scenario_header_scene"
@@ -43,6 +43,27 @@
         <p class="scenario_tag">
           01 · FLOODING<span class="score_long"> · SCORE 0</span>
         </p>
+      </div>
+      <div class="results_ring" hidden>
+        <svg
+          class="results_ring_svg"
+          aria-hidden="true"
+          width="160"
+          height="160"
+          viewBox="0 0 160 160"
+        >
+          <circle class="results_ring_track" cx="80" cy="80" r="68" />
+          <circle
+            class="results_ring_value"
+            cx="80"
+            cy="80"
+            r="68"
+            stroke-dasharray="0 427"
+            transform="rotate(-90 80 80)"
+          />
+        </svg>
+        <span class="results_ring_score">0/3</span>
+        <span class="results_ring_label">CORRECT</span>
       </div>
     </header>
 
@@ -219,6 +240,67 @@
       </div>
     </main>
 
-    <script src="js/quiz.js"></script>
+    <main class="results" hidden>
+      <div class="results_intro">
+        <h1 class="results_title" tabindex="-1"></h1>
+        <p class="results_message"></p>
+      </div>
+
+      <h2 class="results_section_title">WHAT TO REMEMBER</h2>
+      <ul class="results_list"></ul>
+
+      <h2 class="results_section_title">IN AN EMERGENCY</h2>
+      <div class="results_card">
+        <p class="results_card_text">
+          Emergency numbers in Switzerland. Tap to call.
+        </p>
+        <div class="results_numbers">
+          <a class="results_number" href="tel:112">
+            <span class="results_number_value">112</span>
+            <span class="results_number_label">General emergency</span>
+          </a>
+          <a class="results_number" href="tel:117">
+            <span class="results_number_value">117</span>
+            <span class="results_number_label">Police</span>
+          </a>
+          <a class="results_number" href="tel:118">
+            <span class="results_number_value">118</span>
+            <span class="results_number_label">Fire brigade</span>
+          </a>
+          <a class="results_number" href="tel:144">
+            <span class="results_number_value">144</span>
+            <span class="results_number_label">Ambulance</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="results_actions">
+        <a class="results_button" href="home.html">
+          <span class="glow_point" aria-hidden="true"></span>
+          Choose another scenario
+        </a>
+        <a
+          class="results_button results_button_secondary"
+          href="scenario-1.html"
+        >
+          <svg
+            aria-hidden="true"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" />
+          </svg>
+          Restart this scenario
+        </a>
+      </div>
+    </main>
+
+    <script type="module" src="js/quiz.js"></script>
   </body>
 </html>

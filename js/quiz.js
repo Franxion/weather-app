@@ -10,11 +10,17 @@ const count = document.querySelector(".quiz_count");
 const progress = document.querySelector(".quiz_progress");
 const progressSteps = [...progress.children];
 const slides = [...track.children];
+const quiz = document.querySelector(".quiz");
+const results = document.querySelector(".results");
+const resultsRing = document.querySelector(".results_ring");
 
-let QUESTIONNAIRE = { scenarioId: 0, slide: 0, score: 0 };
+let QUESTIONNAIRE = { slide: 0, score: 0, answers: [] };
 
-const scenarioQuestions =
-  questions.scenarios[QUESTIONNAIRE.scenarioId].questions;
+const scenarioQuestions = questions.scenarios.find(
+  (scenario) => scenario.id === document.body.dataset.scenarioId,
+).questions;
+
+const RING_LENGTH = 427;
 
 const ICON_CHECK =
   '<svg aria-hidden="true" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
@@ -100,6 +106,8 @@ form.addEventListener("submit", (event) => {
     revealAnswer();
   } else if (!isLastQuestion()) {
     showSlide();
+  } else {
+    showResults();
   }
 });
 
@@ -147,6 +155,10 @@ function revealAnswer() {
   const userAnswer = slide.querySelector(":checked").value;
   const isCorrect = userAnswer === correctOptionId;
 
+  QUESTIONNAIRE = {
+    ...QUESTIONNAIRE,
+    answers: [...QUESTIONNAIRE.answers, isCorrect],
+  };
   if (isCorrect) {
     QUESTIONNAIRE = { ...QUESTIONNAIRE, score: QUESTIONNAIRE.score + 1 };
     updateScore(true);
@@ -186,6 +198,60 @@ function showFeedbackPopup(isCorrect, question) {
   dialog.addEventListener("close", () => dialog.remove());
   document.body.append(dialog);
   dialog.showModal();
+}
+
+function showResults() {
+  const { score, answers } = QUESTIONNAIRE;
+  const total = scenarioQuestions.length;
+  const percent = (score / total) * 100;
+  const { headings, message } = questions.ui.results;
+  const title = results.querySelector(".results_title");
+
+  resultsRing.querySelector(".results_ring_score").textContent =
+    `${score}/${total}`;
+  resultsRing
+    .querySelector(".results_ring_value")
+    .setAttribute(
+      "stroke-dasharray",
+      `${(RING_LENGTH * score) / total} ${RING_LENGTH}`,
+    );
+  title.textContent = headings.find(
+    (heading) => percent >= heading.minPercent,
+  ).text;
+  results.querySelector(".results_message").textContent = message
+    .replace("{score}", score)
+    .replace("{total}", total);
+  results
+    .querySelector(".results_list")
+    .replaceChildren(
+      ...scenarioQuestions.map((question, i) =>
+        createSummaryItem(question.summary, answers[i]),
+      ),
+    );
+
+  document.body.classList.add("page_results");
+  quiz.hidden = true;
+  resultsRing.hidden = false;
+  results.hidden = false;
+  window.scrollTo(0, 0);
+  title.focus();
+}
+
+function createSummaryItem(summary, isCorrect) {
+  const { markCorrect, markIncorrect } = questions.ui.results;
+  const item = createElement("li", "results_item");
+  const mark = createElement(
+    "span",
+    `results_mark ${isCorrect ? "results_mark_right" : "results_mark_wrong"}`,
+  );
+  mark.setAttribute("role", "img");
+  mark.setAttribute("aria-label", isCorrect ? markCorrect : markIncorrect);
+  mark.innerHTML = (isCorrect ? ICON_CHECK : ICON_CROSS).replaceAll(
+    "{size}",
+    13,
+  );
+  item.append(mark, createElement("span", "", summary));
+  return item;
 }
 
 function updateScore(isUp) {
