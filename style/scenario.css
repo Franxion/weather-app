@@ -105,7 +105,33 @@
 
 .quiz_progress_step_done {
   background-color: var(--scenario-color);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--scenario-color) 55%, transparent);
+  box-shadow: 0 0 10px
+    color-mix(in srgb, var(--scenario-color) 55%, transparent);
+}
+
+.quiz_viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: -8px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.quiz_track {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  transform: translateX(calc(var(--index, 0) * -1 * (100% + 16px)));
+  transition: transform 0.4s ease;
+}
+
+.quiz_slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .quiz_form {
@@ -121,6 +147,10 @@
   font-size: 21px;
   line-height: 1.28;
   font-weight: 700;
+}
+
+.quiz_question:focus {
+  outline: none;
 }
 
 .quiz_options {
@@ -161,7 +191,11 @@
 
 .quiz_option:has(.quiz_option_input:checked) {
   border: 2px solid var(--scenario-color);
-  background-color: color-mix(in srgb, var(--scenario-color) 15%, var(--color-white));
+  background-color: color-mix(
+    in srgb,
+    var(--scenario-color) 15%,
+    var(--color-white)
+  );
   box-shadow:
     0 0 0 4px color-mix(in srgb, var(--scenario-color) 12%, transparent),
     0 6px 18px color-mix(in srgb, var(--scenario-color) 18%, transparent);
@@ -219,9 +253,24 @@
   cursor: pointer;
 }
 
+.quiz_submit:disabled {
+  background-color: var(--color-mist-line);
+  box-shadow: none;
+  color: var(--color-moss-muted);
+  cursor: default;
+}
+
+.quiz_submit:disabled .glow_point {
+  display: none;
+}
+
 .quiz_submit:focus-visible {
   outline: 3px solid var(--color-aurora-text);
   outline-offset: 3px;
+}
+
+.quiz_submit:disabled {
+  opacity: 0.5;
 }
 
 .visually_hidden {
@@ -274,7 +323,8 @@
   }
 
   .quiz_card,
-  .quiz_form {
+  .quiz_form,
+  .quiz_slide {
     gap: 18px;
   }
 
@@ -375,7 +425,8 @@
     max-width: 620px;
   }
 
-  .quiz_form {
+  .quiz_form,
+  .quiz_slide {
     gap: 20px;
     max-width: 720px;
   }
@@ -399,6 +450,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .quiz_track {
+    transition: none;
+  }
+
   .quiz_progress_step_done {
     box-shadow: none;
   }
