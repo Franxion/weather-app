@@ -149,6 +149,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  min-width: 0;
   padding-right: 8px;
 }
 
@@ -186,6 +187,21 @@
 
 .scenario_card_start {
   display: none;
+}
+
+@media (max-width: 359px) {
+  .scenario_card {
+    gap: 10px;
+  }
+
+  .scenario_card_image {
+    width: 96px;
+  }
+
+  .scenario_card_title {
+    font-size: 19px;
+    overflow-wrap: break-word;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -87,147 +87,7 @@
         </div>
         <form class="quiz_form">
           <div class="quiz_viewport">
-            <div class="quiz_track">
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  Heavy rain has flooded your street. Your bike is in the
-                  underground car park of your building. What do you do?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span
-                      >Run down quickly and move the bike to a higher
-                      place.</span
-                    >
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span
-                      >Stay out of the car park and leave the bike where it
-                      is.</span
-                    >
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>Wait in the car park until the rain stops.</span>
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  The river near your student flat is very high and fast. You
-                  want to walk to the station. Which route do you take?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span
-                      >The riverside path, because it is the shortest way.</span
-                    >
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span
-                      >A route away from the river, even if it takes
-                      longer.</span
-                    >
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span
-                      >Over the footbridge, so you can see how high the water
-                      is.</span
-                    >
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  The flood is over and the water has left your flat. When can
-                  you switch the power back on?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span
-                      >Right away, so you can dry the room with a heater.</span
-                    >
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>As soon as the floor looks dry.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span
-                      >Only after an expert has checked the wiring and
-                      appliances.</span
-                    >
-                  </label>
-                </fieldset>
-              </section>
-            </div>
+            <div class="quiz_track"></div>
           </div>
 
           <div class="quiz_actions">
@@ -300,6 +160,24 @@
         </a>
       </div>
     </main>
+
+    <template id="question-template">
+      <section class="quiz_slide">
+        <h1 class="quiz_question" tabindex="-1"></h1>
+
+        <fieldset class="quiz_options">
+          <legend class="visually_hidden">Choose one answer</legend>
+        </fieldset>
+      </section>
+    </template>
+
+    <template id="option-template">
+      <label class="quiz_option">
+        <input class="quiz_option_input" type="radio" />
+        <span class="quiz_option_letter" aria-hidden="true"></span>
+        <span class="quiz_option_text"></span>
+      </label>
+    </template>
 
     <script type="module" src="js/quiz.js"></script>
   </body>

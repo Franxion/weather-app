@@ -87,128 +87,7 @@
         </div>
         <form class="quiz_form">
           <div class="quiz_viewport">
-            <div class="quiz_track">
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  You see lightning and count 9 seconds until you hear the
-                  thunder. About how far away is the storm?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>About 3 km</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>About 9 km</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>About 30 km</span>
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  You are swimming in a lake with friends when a thunderstorm
-                  moves in. What do you do?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>Stay in the water until the rain is over.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>Swim out to the raft and wait there.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>Get out of the water and go into a building or a car.</span>
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  You are hiking in open terrain. There is no building or car
-                  nearby, and lightning is close. What do you do?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>Lie flat on the ground.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>Crouch down low.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>Walk down into the dry riverbed to get lower.</span>
-                  </label>
-                </fieldset>
-              </section>
-            </div>
+            <div class="quiz_track"></div>
           </div>
 
           <div class="quiz_actions">
@@ -281,6 +160,24 @@
         </a>
       </div>
     </main>
+
+    <template id="question-template">
+      <section class="quiz_slide">
+        <h1 class="quiz_question" tabindex="-1"></h1>
+
+        <fieldset class="quiz_options">
+          <legend class="visually_hidden">Choose one answer</legend>
+        </fieldset>
+      </section>
+    </template>
+
+    <template id="option-template">
+      <label class="quiz_option">
+        <input class="quiz_option_input" type="radio" />
+        <span class="quiz_option_letter" aria-hidden="true"></span>
+        <span class="quiz_option_text"></span>
+      </label>
+    </template>
 
     <script type="module" src="js/quiz.js"></script>
   </body>

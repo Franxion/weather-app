@@ -149,7 +149,8 @@
   font-weight: 700;
 }
 
-.quiz_question:focus {
+.quiz_question:focus,
+.quiz_feedback_text:focus {
   outline: none;
 }
 

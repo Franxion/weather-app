@@ -1,5 +1,3 @@
-import questions from "../data/questions.json" with { type: "json" };
-
 const form = document.querySelector(".quiz_form");
 const track = form.querySelector(".quiz_track");
 const submitButton = form.querySelector(".quiz_submit");
@@ -9,16 +7,23 @@ const scoreLong = document.querySelector(".score_long");
 const count = document.querySelector(".quiz_count");
 const progress = document.querySelector(".quiz_progress");
 const progressSteps = [...progress.children];
-const slides = [...track.children];
 const quiz = document.querySelector(".quiz");
 const results = document.querySelector(".results");
 const resultsRing = document.querySelector(".results_ring");
+const questionTemplate = document.querySelector("#question-template");
+const optionTemplate = document.querySelector("#option-template");
 
 let QUESTIONNAIRE = { slide: 0, score: 0, answers: [] };
+
+const questions = await loadQuestions();
 
 const scenarioQuestions = questions.scenarios.find(
   (scenario) => scenario.id === document.body.dataset.scenarioId,
 ).questions;
+
+renderQuestions();
+const slides = [...track.children];
+accessibilitySlidingQuestions(0);
 
 const RING_LENGTH = 427;
 
@@ -28,6 +33,44 @@ const ICON_CROSS =
   '<svg aria-hidden="true" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const ICON_EXTERNAL =
   '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+
+async function loadQuestions() {
+  try {
+    const response = await fetch("data/questions.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    const message = createElement(
+      "p",
+      "quiz_error",
+      "The questions could not be loaded. Please reload the page.",
+    );
+    message.setAttribute("role", "alert");
+    form.replaceChildren(message);
+    throw error;
+  }
+}
+
+function renderQuestions() {
+  const slidesToRender = scenarioQuestions.map((question) => {
+    const slide = questionTemplate.content.firstElementChild.cloneNode(true);
+    slide.querySelector(".quiz_question").textContent = question.text;
+    slide.querySelector(".quiz_options").append(
+      ...question.options.map((option) => {
+        const label = optionTemplate.content.firstElementChild.cloneNode(true);
+        const input = label.querySelector(".quiz_option_input");
+        input.name = question.id;
+        input.value = option.id;
+        label.querySelector(".quiz_option_letter").textContent =
+          option.id.toUpperCase();
+        label.querySelector(".quiz_option_text").textContent = option.text;
+        return label;
+      }),
+    );
+    return slide;
+  });
+  track.replaceChildren(...slidesToRender);
+}
 
 function createElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -90,11 +133,10 @@ function createFeedback(isCorrect, { explanation, source }) {
   link.append(linkText, linkHint);
   link.insertAdjacentHTML("beforeend", ICON_EXTERNAL);
 
-  feedback.append(
-    head,
-    createElement("p", "quiz_feedback_text", explanation),
-    link,
-  );
+  const text = createElement("p", "quiz_feedback_text", explanation);
+  text.tabIndex = -1;
+
+  feedback.append(head, text, link);
   return feedback;
 }
 
@@ -127,20 +169,29 @@ function showSlide() {
   accessibilitySlidingQuestions(QUESTIONNAIRE.slide);
   updateScore(false);
   updateButton();
+  focusQuestionTitle();
+}
+
+function focusQuestionTitle() {
+  currentSlide().querySelector(".quiz_question").focus({ preventScroll: true });
 }
 
 function updateStyleProgessQuestions(index) {
+  const total = String(slides.length).padStart(2, "0");
   progressSteps.forEach((step, i) => {
     step.classList.toggle("quiz_progress_step_done", i <= index);
   });
-  count.textContent = `QUESTION ${String(index + 1).padStart(2, "0")} / 03`;
+  count.textContent = `QUESTION ${String(index + 1).padStart(2, "0")} / ${total}`;
 }
 
 function accessibilitySlidingQuestions(index) {
   slides.forEach((slide, i) => {
     slide.inert = i !== index;
   });
-  progress.setAttribute("aria-label", `Question ${index + 1} of ${3}`);
+  progress.setAttribute(
+    "aria-label",
+    `Question ${index + 1} of ${slides.length}`,
+  );
   progress.setAttribute("aria-valuenow", index + 1);
 }
 
@@ -198,6 +249,7 @@ function showFeedbackPopup(isCorrect, question) {
   dialog.addEventListener("close", () => dialog.remove());
   document.body.append(dialog);
   dialog.showModal();
+  dialog.querySelector(".quiz_feedback_text").focus();
 }
 
 function showResults() {

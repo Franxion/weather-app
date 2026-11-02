@@ -87,127 +87,7 @@
         </div>
         <form class="quiz_form">
           <div class="quiz_viewport">
-            <div class="quiz_track">
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  A heatwave warning is out for your region. You planned a run
-                  with friends at 2 p.m. What is the best plan?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>Run at 2 p.m. as planned and bring a sports drink.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>Move the run to the early morning or the evening, or skip it.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-1"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>Run at 2 p.m., but take a shorter route.</span>
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  How much should you drink on a hot day during a heatwave?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>Regularly through the day, at least 1.5 litres.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>Only when you feel thirsty.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-2"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>Mainly cold beer or iced soft drinks.</span>
-                  </label>
-                </fieldset>
-              </section>
-              <section class="quiz_slide">
-                <h1 class="quiz_question" tabindex="-1">
-                  Your room gets very hot during the day. When should you let
-                  fresh air in?
-                </h1>
-
-                <fieldset class="quiz_options">
-                  <legend class="visually_hidden">Choose one answer</legend>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="a"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">A</span>
-                    <span>At midday, when the sun is strongest.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="b"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">B</span>
-                    <span>Never. Keep the windows shut day and night.</span>
-                  </label>
-                  <label class="quiz_option">
-                    <input
-                      class="quiz_option_input"
-                      type="radio"
-                      name="question-3"
-                      value="c"
-                    />
-                    <span class="quiz_option_letter" aria-hidden="true">C</span>
-                    <span>At night and early in the morning, when it is cooler outside.</span>
-                  </label>
-                </fieldset>
-              </section>
-            </div>
+            <div class="quiz_track"></div>
           </div>
 
           <div class="quiz_actions">
@@ -280,6 +160,24 @@
         </a>
       </div>
     </main>
+
+    <template id="question-template">
+      <section class="quiz_slide">
+        <h1 class="quiz_question" tabindex="-1"></h1>
+
+        <fieldset class="quiz_options">
+          <legend class="visually_hidden">Choose one answer</legend>
+        </fieldset>
+      </section>
+    </template>
+
+    <template id="option-template">
+      <label class="quiz_option">
+        <input class="quiz_option_input" type="radio" />
+        <span class="quiz_option_letter" aria-hidden="true"></span>
+        <span class="quiz_option_text"></span>
+      </label>
+    </template>
 
     <script type="module" src="js/quiz.js"></script>
   </body>
