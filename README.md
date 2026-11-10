@@ -4,8 +4,8 @@ A short interactive quiz that teaches students in Switzerland what to do during 
 
 Student project · UZH Information Management · Group 17
 
-- **Live version:** _<add the deployment URL here>_
-- **Repository:** https://github.com/MicheleDellaquila/weather-app
+- **Live version:** https://franxion.github.io/weather-app
+- **Repository:** https://github.com/Franxion/weather-app
 
 ## What the app does
 
