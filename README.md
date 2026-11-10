@@ -89,4 +89,4 @@ The start page is `index.html`, so the bare domain opens the app on any of these
 
 ## Disclaimer
 
-This quiz is for learning only and is not an official warning service. For current warnings see [natural-hazards.ch](https://www.natural-hazards.ch/#hazards-tab=all) and the MeteoSwiss app. In an emergency, call 112.
+This quiz is for learning only and is not an official warning service. For current warnings see [natural-hazards.ch](https://www.natural-hazards.ch/#hazards-tab=all) and the MeteoSwiss app. In an emergency, call 112. Logo and all images are generated with AI
