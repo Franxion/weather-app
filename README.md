@@ -22,11 +22,13 @@ The app is **static** (HTML, CSS, JavaScript). There is nothing to install and n
 
 Pick **one** of the two options. Run the command from the project folder, the one that contains `index.html`.
 
-**Option A: Python** (already installed on macOS and most Linux systems; any Python 3 works)
+**Option A: Python 3**
 
 ```bash
 python3 -m http.server 8000
 ```
+
+On Windows, type `python` (or `py`) instead of `python3`. On macOS, `python3` comes with the Xcode Command Line Tools: if they are missing, macOS offers to install them the first time you run the command.
 
 **Option B: Node.js**
 
@@ -79,14 +81,53 @@ If port 8000 is already in use, change the number in both the command and the ad
 
 ## Editing the content
 
-All text lives in `data/questions.json`; no code change is needed to edit questions. Each question has an `id`, the `text`, a list of `options` (ids `a`, `b`, `c`), the `correctOptionId`, an `explanation` (shown in the popup), a `summary` (shown in the results) and a `source` (`label` and `url`). The file also holds the emergency numbers and the texts of the results screen.
+The questions are loaded from `data/questions.json`, so they can be changed without touching the code. The other interface texts are written in the HTML pages and in `js/quiz.js`.
+
+**Read from `data/questions.json`**
+
+- `scenarios`: each page finds its scenario through the `id` (`flooding`, `heatwave`, `thunderstorm`) and shows every entry of its `questions`: the `text`, the `options` (each with an `id` and a `text`), the `correctOptionId`, the `explanation` (shown in the popup), the `summary` (shown under "What to remember") and the `source` (`label` and `url`).
+- `ui.results`: the result `headings` (chosen by the score in percent, through `minPercent`), the `message` (`{score}` and `{total}` are filled in) and `markCorrect` / `markIncorrect` (screen-reader labels for the ticks and crosses in the summary).
+
+**Written in the code**
+
+- `index.html`: all the texts of the home page, including the scenario cards and the disclaimer.
+- `scenario-1.html` to `scenario-3.html`: the page title and texts such as the scenario tag ("01 · FLOODING"), "QUESTION 01 / 03", "SCORE 0", "Check answer", "WHAT TO REMEMBER", "IN AN EMERGENCY", the emergency numbers (112, 117, 118, 144) and the buttons on the results screen.
+- `js/quiz.js`: "Check answer", "Next question", "See your results", "SCORE" and "OFFICIAL SOURCE".
+
+The JSON also contains the rest of `ui` (for example `ui.home` and `ui.quiz`), `emergencyNumbers`, and a `title`, `intro`, `icon` and `color` for each scenario. This version of the app does not read them, so changing them has no effect.
+
+When you edit the questions:
+
+- keep the scenario `id`s as they are, because they must match the `data-scenario-id` of each page;
+- make sure every `correctOptionId` matches one of the option `id`s, otherwise every answer is marked wrong;
+- keep three questions per scenario: the counter shown when the page opens ("QUESTION 01 / 03") and the progress bar are fixed at three in the HTML.
 
 ## Deployment
 
-Because the project is fully static, it can be hosted on any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages). No build command is needed, and the publish directory is the repository root.
+The live version is published with **GitHub Pages**, directly from the repository and with no build step:
 
-The start page is `index.html`, so the bare domain opens the app on any of these hosts.
+1. On GitHub, open the repository and go to **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+3. Choose the branch **main** and the folder **/ (root)**, then click **Save**.
+4. After a minute or two the site is online at https://franxion.github.io/weather-app/. Every push to `main` publishes the new version.
+
+Good to know:
+
+- Only the owner of the repository can change these settings.
+- With a free GitHub plan, Pages works only for public repositories. This repository is private, which needs a paid plan such as GitHub Pro (included in the GitHub Student Developer Pack). Either way the published site is public, including Markdown files such as this README.
+- GitHub Pages is case-sensitive: every link must match the exact spelling of the file name.
+
+Because the project is fully static, it can also be hosted on any other static host (Netlify, Vercel, Cloudflare Pages). No build command is needed, and the publish directory is the repository root. The start page is `index.html`, so the bare domain opens the app.
+
+## Credits and licences
+
+- **Code:** written by the supplier, a freelance developer hired by Group 17 on Freelancer.com. It uses no external libraries or frameworks.
+- **Quiz content** (`data/questions.json`): written by Group 17 from the official Swiss sources linked in each question.
+- **Logo and scenario illustrations** (`assets/`): taken from Group 17's design mock-ups, which were made with generative AI.
+- **Fonts:** Inter, Space Grotesk and IBM Plex Mono, served by Google Fonts and licensed under the [SIL Open Font License 1.1](https://openfontlicense.org).
+
+[`AI_USAGE.md`](AI_USAGE.md) describes how AI was used, by the supplier and by Group 17.
 
 ## Disclaimer
 
-This quiz is for learning only and is not an official warning service. For current warnings see [natural-hazards.ch](https://www.natural-hazards.ch/#hazards-tab=all) and the MeteoSwiss app. In an emergency, call 112. Logo and all images are generated with AI
+This quiz is for learning only and is not an official warning service. For current warnings see [natural-hazards.ch](https://www.natural-hazards.ch/#hazards-tab=all) and the MeteoSwiss app. In an emergency, call 112.
